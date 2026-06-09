@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grading System</title>
+    <link rel="stylesheet" href="grading.css">
+</head>
+<body>
+
+    <h2>Student Grading System</h2>
+
+    <input type="text" id="name" placeholder="Student Name"><br><br>
+
+    <input type="number" id="maths" placeholder="Maths Marks"><br><br>
+    <input type="number" id="science" placeholder="Science Marks"><br><br>
+    <input type="number" id="telugu" placeholder="Telugu Marks"><br><br>
+    <input type="number" id="english" placeholder="English Marks"><br><br>
+    <input type="number" id="hindi" placeholder="Hindi Marks"><br><br>
+    <input type="number" id="social" placeholder="Social Marks"><br><br>
+
+    <button onclick="calculateResult()">Calculate Result</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function calculateResult() {
+
+            let name = document.getElementById("name").value;
+            let maths = Number(document.getElementById("maths").value);
+            let science = Number(document.getElementById("science").value);
+            let telugu = Number(document.getElementById("telugu").value);
+            let english = Number(document.getElementById("english").value);
+            let hindi = Number(document.getElementById("hindi").value);
+            let social = Number(document.getElementById("social").value);
+
+            if (maths < 35 || science < 35 || telugu < 35 ||
+                english < 35 || hindi < 35 || social < 35) {
+
+                document.getElementById("result").innerHTML =
+                    "<b>Name:</b> " + name + "<br>" +
+                    "<b>Result:</b> Failed";
+
+            } else {
+
+                let total = maths + science + telugu + english + hindi + social;
+                let percentage = (total / 600) * 100;
+                let grade;
+
+                if (percentage >= 90) {
+                    grade = "A+ Grade";
+                } else if (percentage >= 80) {
+                    grade = "A Grade";
+                } else if (percentage >= 70) {
+                    grade = "B+ Grade";
+                } else if (percentage >= 60) {
+                    grade = "B Grade";
+                } else if (percentage >= 50) {
+                    grade = "C Grade";
+                } else {
+                    grade = "D Grade";
+                }
+
+                document.getElementById("result").innerHTML =
+                    "<b>Name:</b> " + name + "<br>" +
+                    "<b>Total Marks:</b> " + total + "/600<br>" +
+                    "<b>Percentage:</b> " + percentage.toFixed(2) + "%<br>" +
+                    "<b>Grade:</b> " + grade + "<br>" +
+                    "<b>Result:</b> Passed";
+            }
+        }
+    </script>
+
+</body>
+</html>
